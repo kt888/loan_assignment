@@ -1,12 +1,14 @@
 
-#how to run
+how to run
 
-## python loan_facility_matching.py --loans large/loans.csv --facilities large/facilities.csv --covenants large/covenants.csv 
+1. python loan_facility_matching.py --loans large/loans.csv --facilities large/facilities.csv --covenants large/covenants.csv 
 
-##python loan_facility_matching.py --loans small/loans.csv --facilities small/facilities.csv --covenants small/covenants.csv 
+2. python loan_facility_matching.py --loans small/loans.csv --facilities small/facilities.csv --covenants small/covenants.csv 
 
-# run tests
-## pytest
+
+run tests
+
+pytest
 
 
 1. How long did you spend working on the problem? What did you find to be the most
