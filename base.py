@@ -11,6 +11,14 @@ class Facility:
         self.total_amount_charged = 0.0  # Total amount Affirm has charged facility
 
     def update(self, loan):
+        """
+        If optimization is chosen instead of just selecting
+        the cheapest facility, the total amount charged by facility is
+        updated. The facility that gives the minimum total
+        amount charged is selected
+        Arguments:
+            loan {[type]} -- [description]
+        """
         self.amount -= loan.amount
         self.total_amount_charged += loan.amount * self.interest_rate
 
@@ -59,6 +67,15 @@ class Loan:
         self.assignment = None
 
     def process(self, facilities, optimization=False):
+        """
+        Possible candidates are selected based on a condition (cheapest loan
+        or any other optimization)
+        Arguments:
+            facilities
+        
+        Keyword Arguments:
+            optimization {bool} -- (default: {False})
+        """
         candidates = {}
         for f_id, facility in facilities.items():
             if facility.can_process_loan(self):
