@@ -1,3 +1,14 @@
+
+#how to run
+
+## python loan_facility_matching.py --loans large/loans.csv --facilities large/facilities.csv --covenants large/covenants.csv 
+
+##python loan_facility_matching.py --loans small/loans.csv --facilities small/facilities.csv --covenants small/covenants.csv 
+
+# run tests
+## pytest
+
+
 1. How long did you spend working on the problem? What did you find to be the most
 difficult part?
 
@@ -117,6 +128,6 @@ One method to break the tie is to select the facility based on the following key
 amount_owed_to_facility + interest_of_facility * loan. Every time a loan is issued
 from this facility, the amount_owed_to_facility is updated. I have already implemented this.
 If the optimization flag under Loan is set to True, the new method for calculating the loan is considered.
-This ensures fewer ties.
+This ensures fewer ties because instead of just selecting the cheapest facility, the total amount charged by facility is updated. The facility that gives the minimum total amount charged is selected
 
 
