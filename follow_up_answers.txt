@@ -87,11 +87,24 @@ To get the information about a particular facility, query GET /api/v1/facilities
 in batch rather than streaming? We are not looking for code here, but pseudo code or
 description of a revised algorithm appreciated.
 
-We can potentially model this problem as the maximum bipartite matching problem with weights.
+We can potentially model this problem as the minimum cost flow problem.
 Here we will have M loan applications in a batch and N facilities to choose from. 
 This is a bipartite graph because none of the loan nodes will have edges to each other and
-none of the facilities 
+none of the facilities.
 
+In the graph, we have one node for each loan and one node for each facility.
+We also create two dummy nodes, source and sink.
+
+- We add an edge from source to each loan with capacity 1 and cost 0.
+- We add an edge from each loan to each facility (only if it satisfies the covenants) with a capacity 1 
+and cost (-1 * profit from loan using that facility). We use negative of profit because the algorithm minimizes
+the cost of flowing through the graph.
+- We add an edge from each facility to the sink.
+
+We need to find the minimum cost flow of size M where M is the number of loan applications. We can use the
+network simplex algorithm to solve this.
+
+Reference: https://en.wikipedia.org/wiki/Minimum-cost_flow_problem
 
 
 6. Because a number of facilities share the same interest rate, it’s possible that there are a

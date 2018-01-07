@@ -63,7 +63,7 @@ def write_yields_csv(facilities):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for facilitity_id, facility in facilities.items():
-            writer.writerow({'facility_id': facilitity_id, 'expected_yield': facility.total_yield})
+            writer.writerow({'facility_id': facilitity_id, 'expected_yield': int(round(facility.total_yield))})
 
 
 def parse_args():

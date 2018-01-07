@@ -58,12 +58,15 @@ class Loan:
         self.state = state
         self.assignment = None
 
-    def process(self, facilities):
+    def process(self, facilities, optimization=False):
         candidates = {}
         for f_id, facility in facilities.items():
             if facility.can_process_loan(self):
-                candidates[f_id] = self.amount * facility.interest_rate + \
-                    facility.total_amount_charged
+                if optimization:
+                    candidates[f_id] = self.amount * facility.interest_rate + \
+                        facility.total_amount_charged
+                else:
+                    candidates[f_id] = self.amount * facility.interest_rate
         if not candidates:
             return
         selected_facility = min(candidates, key=candidates.get)
