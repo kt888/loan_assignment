@@ -7,6 +7,16 @@ from collections import defaultdict
 
 
 def match_facilities_and_covenants(facilities, banks, covenant_data):
+    """Matches facilities and covenants
+    
+    If covenants are present they are assigned to facility
+    object based on faciliti id, otherwise all facilities
+    in that bank get the covenant
+    Arguments:
+        facilities {[type]} -- [description]
+        banks {[type]} -- [description]
+        covenant_data {[type]} -- [description]
+    """
     for covenant in covenant_data:
         if covenant.facility_id:
             facilities[covenant.facility_id].covenants.append(covenant)
@@ -16,6 +26,14 @@ def match_facilities_and_covenants(facilities, banks, covenant_data):
 
 
 def load_facilities(path_to_facilities):
+    """load facilities.csv to a dict of Facility objects
+    
+    Arguments:
+        path_to_facilities {[type]} -- [description]
+    
+    Returns:
+        [type] -- {facility_id:Facility Object}, {bank_id: [facilities under bank]}
+    """
     facility_dict = defaultdict(Facility)
     bank_dict = defaultdict(list)
     facilities_data = pandas.read_csv(path_to_facilities)
@@ -30,6 +48,16 @@ def load_facilities(path_to_facilities):
 
 
 def load_covenants(path_to_covenants):
+    """covenants are loaded
+    
+    Covenants are loaded and constraints are assigned
+    along with the operator
+    Arguments:
+        path_to_covenants
+    
+    Returns:
+        covenants
+    """
     covenants = []
     covenants_data = pandas.read_csv(path_to_covenants)
     for _, covenant in covenants_data.iterrows():
@@ -45,6 +73,12 @@ def load_covenants(path_to_covenants):
 
 
 def process_loans(facilities, path_to_loans):
+    """
+    Loans are processed and assigned to facilities
+    Arguments:
+        facilities {[type]} -- [description]
+        path_to_loans {[type]} -- [description]
+    """
     loan_data = pandas.read_csv(path_to_loans)
     with open('assignments.csv', 'w') as csvfile:
         fieldnames = ['loan_id', 'facility_id']
