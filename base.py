@@ -42,7 +42,7 @@ class Facility:
 
 class Covenant:
     def __init__(self, facility_id, bank_id):
-        self.facility_id = facility_id if facility_id else None
+        self.facility_id = facility_id if facility_id > 0 else None
         self.bank_id = bank_id
         self.constraints = []
 
